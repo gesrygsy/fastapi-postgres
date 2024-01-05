@@ -98,6 +98,7 @@ venv.bak/
 .devcontainer
 # Dockerfile
 *.csv#
+*.pem
 
 # Spyder project settings
 .spyderproject
