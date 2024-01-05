@@ -1,0 +1,50 @@
+version: '3.8'
+
+
+services:
+  postgresdb:
+    container_name: postgresdb
+    image: postgres:alpine
+    user: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgresdb
+      - PGUSER=shiro
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      shiro_database_network:
+        ipv4_address: 172.128.0.5
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@domain.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    networks:
+      shiro_database_network:
+        ipv4_address: 172.128.0.6
+        
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin:
+    driver: local
+
+
+networks:
+  shiro_database_network:
+    ipam:
+      config:
+        - subnet: 172.128.0.0/16
