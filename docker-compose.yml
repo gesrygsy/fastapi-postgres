@@ -17,7 +17,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      shiro_database_network:
+      network:
         ipv4_address: 172.128.0.5
 
   pgadmin:
@@ -32,9 +32,9 @@ services:
     volumes:
       - pgadmin:/var/lib/pgadmin
     networks:
-      shiro_database_network:
+      network:
         ipv4_address: 172.128.0.6
-        
+
 
 volumes:
   postgres_data:
@@ -44,7 +44,9 @@ volumes:
 
 
 networks:
-  shiro_database_network:
+  network:
+    # driver: bridge
+    # external: true
     ipam:
       config:
         - subnet: 172.128.0.0/16
