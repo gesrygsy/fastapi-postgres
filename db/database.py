@@ -4,8 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-DATABASE_URL = "postgresql://admin:password@localhost:5432/postgres"
-ASYNC_DATABASE_URL = "postgresql+asyncpg://admin:password@localhost:5432/postgres"
+DATABASE_URL = "postgresql://xxxxx:xxxxxxxx@localhost:5432/postgres"
+ASYNC_DATABASE_URL = "postgresql+asyncpg://xxxxx:xxxxxxxx@localhost:5432/postgres"
 
 engine = create_engine(
     DATABASE_URL, connect_args={}, future=True
