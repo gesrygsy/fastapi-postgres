@@ -31,7 +31,5 @@ if __name__ == "__main__":
         "main:app",
         host="127.0.0.1",
         port=8000,
-#        ssl_keyfile="/etc/nginx/ssl/server.key",
-#        ssl_certfile="/etc/nginx/ssl/server.crt",
         reload=True,
     )

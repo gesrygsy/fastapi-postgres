@@ -10,8 +10,8 @@ services:
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=postgresdb
-      - PGUSER=shiro
+      - POSTGRES_DB=postgres
+      - PGUSER=user
     ports:
       - "5432:5432"
     volumes:
@@ -25,7 +25,7 @@ services:
     image: dpage/pgadmin4
     restart: always
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@domain.com
+      - PGADMIN_DEFAULT_EMAIL=admin@email.com
       - PGADMIN_DEFAULT_PASSWORD=password
     ports:
       - "5050:80"

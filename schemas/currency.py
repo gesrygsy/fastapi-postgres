@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 
 class CurrnBase(BaseModel):
+    # function: str
     symbol: str
     datetime: datetime
     open: float
@@ -19,12 +20,16 @@ class CurrnCreate(CurrnBase):
     ...
 
 
+class CurrnShow(CurrnBase):
+    dataset_function: str
+
+
 class Currn(CurrnBase):
     id: int
-    dataset_function: str = "FX"
+    dataset_function: str
 
     created_at: datetime
     updated_at: datetime
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
