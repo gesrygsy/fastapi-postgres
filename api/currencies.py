@@ -1,5 +1,6 @@
 from typing import List, Annotated
 from datetime import datetime
+from dateutil.parser import parse
 
 import fastapi
 from fastapi import Depends, HTTPException, status, Query, Path
@@ -59,6 +60,11 @@ async def read_symbol(
     db: Session =Depends(get_db), 
     current_user: User =Depends(get_current_active_user)
     ):
+    try:
+        start_date = parse("1988-01-01").isoformat() if start_date in [None, ""] else parse(start_date).isoformat()
+        end_date = datetime.now().isoformat() if end_date in [None, ""] else parse(end_date).isoformat()
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"{e.__class__}, {e.__context__}")
     db_symbol = get_symbol(db=db, function=function, symbol=symbol, start_date=start_date, end_date=end_date)
     if not db_symbol:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Symbol data not found")

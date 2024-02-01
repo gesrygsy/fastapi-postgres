@@ -5,7 +5,7 @@ import pytest
 # Before run pytest, you must CREATE an admin account on admin side, COPY & PASTE 'token' to below 'get_admin_token' function after verified email account.
 @pytest.fixture
 def get_admin_token() -> str:
-    return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaGlybyIsImV4cCI6MTcwNTk5ODIzM30.WK5herUN8-66-tod5rnleAUj8qi2m-1JP70zBCzYJHg"
+    return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwNjQzMjU1MX0.wkOqKge9qQHZFEiSOviJb5mRbOIWOtvPlPtG1GJ8p54"
 
 
 # 'get_user_token' is just a mock token string for testing, make sure the 'get_admin_token' is correct.

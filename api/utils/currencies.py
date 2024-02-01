@@ -14,13 +14,7 @@ def get_currency(db: Session, skip: int, limit: int):
 
 
 def get_symbol(db: Session, function:str, symbol: str, start_date: str | None, end_date: str | None):
-    if start_date is None:
-        start_date = "1988-01-01"
-    if end_date is None:
-        end_date = datetime.now().strftime('%Y-%m-%d')
-    start = datetime.strptime(start_date, '%Y-%m-%d').isoformat()
-    end = datetime.strptime(end_date, '%Y-%m-%d').isoformat()
-    return db.query(Currn).filter((Currn.dataset_function == function) & (Currn.symbol == symbol)).filter(Currn.datetime >= start).filter(Currn.datetime <= end).order_by(Currn.datetime).all()
+    return db.query(Currn).filter((Currn.dataset_function == function) & (Currn.symbol == symbol) & (Currn.datetime >= start_date) & (Currn.datetime <= end_date)).order_by(Currn.datetime).all()
 
 
 def post_symbol_data(db: Session, base: CurrnCreate, function: str):
